@@ -1,5 +1,8 @@
 set nocompatible              " be iMproved, required
 
+set swapfile
+set dir=~/tmp
+
 so ~/.vim/plugins.vim
 source ~/.vim/bundle/php-doc/php-doc.vim 
 
