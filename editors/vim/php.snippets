@@ -1,0 +1,114 @@
+snippet met
+	public function ${1}()
+	{
+		${2}
+	}
+snippet pmet
+	protected function ${1}()
+	{
+		${2}
+	}
+
+snippet smet
+	public static function ${1}()
+	{
+		${2}
+	}
+
+snippet psmet
+	protected static function ${1}()
+	{
+		${2}
+	}
+
+snippet rg
+	Route::get('${1}', '${2}Controller@${3}');
+
+snippet rp
+	Route::post('${1}', '${2}Controller@${3}');
+
+snippet rga
+	Route::get('${1}', function (${2}) {
+		${3}
+	});
+
+snippet rpa
+	Route::post('${1}', function (${2}) {
+		${3}
+	});
+
+snippet $
+	$this->
+
+snippet con
+	public function __construct(${1})
+	{
+		${2}
+	}
+
+snippet ed
+	echo Debug::vars($${1});
+
+snippet ede
+	echo Debug::vars($${1});
+	exit;
+
+snippet e
+	exit;
+
+snippet dbsa
+	$${1} = DB::select(${2})
+		->from(${3})
+		->where('${4}', '=', $${5})
+		->execute()->as_array();
+
+snippet dbsc
+	$${1} = DB::select($${2})
+		->from(${3})
+		->where('${4}', '=', $${5})
+		->limit(1)
+		->execute()->current();
+
+snippet for 
+	for ($i = 0; $i < $${1}; $i++) {
+		${2}
+	}
+
+snippet fore
+	foreach ($${1} as $${2}) {
+	
+	}
+
+snippet ae 
+	$this->assertEquals(${1}, $${2});
+
+snippet at
+	$this->assertTrue($${1});
+
+snippet af
+	$this->assertFalse($${1});
+
+snippet tc
+	try {
+
+	} catch (Exception $ex) {
+		
+	}
+
+snippet var
+	/**
+	 * @var 
+	 */
+	public $${1};
+
+snippet pvar
+	/**
+	 * @var 
+	 */
+	protected $_${1};
+
+snippet prvar
+	/**
+	 * @var 
+	 */
+	private $_${1};
