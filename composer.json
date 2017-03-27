@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Utils": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spec\\": "spec/"
+        }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.2",
+        "phpunit/phpunit": "^5.7"
+    }
+}
