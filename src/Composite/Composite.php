@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils\Composite;
+namespace Joomartin\Utils\Composite;
 
 trait Composite
 {

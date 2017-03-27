@@ -1,9 +1,9 @@
 <?php
 
-namespace Utils\Tests\Composite;
+namespace Joomartin\Utils\Tests\Composite;
 
 use PHPUnit_Framework_TestCase;
-use Utils\Composite\CompositeStub;
+use Joomartin\Utils\Composite\CompositeStub;
 
 class CompositeTest extends PHPUnit_Framework_TestCase
 {

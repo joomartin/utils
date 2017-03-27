@@ -10,15 +10,17 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": ">=5.5"
+    },
     "autoload": {
         "psr-4": {
-            "Utils\\": "src/"
+            "Joomartin\\Utils\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Utils\\Tests\\": "tests/"
+            "Joomartin\\Utils\\Tests\\": "tests/"
         }
     },
     "require-dev": {

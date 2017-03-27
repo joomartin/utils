@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils\Observer;
+namespace Joomartin\Utils\Observer;
 
 trait Observable
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Utils\Tests\Observer;
+namespace Joomartin\Utils\Tests\Observer;
 
 use PHPUnit_Framework_TestCase;
-use Utils\Observer\Observable;
-use Utils\Observer\ObservableStub;
-use Utils\Observer\Observer;
+use Joomartin\Utils\Observer\Observable;
+use Joomartin\Utils\Observer\ObservableStub;
+use Joomartin\Utils\Observer\Observer;
 
 class ObservableTest extends PHPUnit_Framework_TestCase
 {
