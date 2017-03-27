@@ -3,7 +3,6 @@
 namespace Utils\Tests\Composite;
 
 use PHPUnit_Framework_TestCase;
-use Utils\Composite\Composite;
 use Utils\Composite\CompositeStub;
 
 class CompositeTest extends PHPUnit_Framework_TestCase
