@@ -5,5 +5,5 @@ namespace Utils\Composite;
 class CompositeStub
 {
     use Composite;
-    // Stub class for phpspec to test Trait
+    // Stub class for phpunit to test Trait
 }

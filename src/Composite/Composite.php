@@ -4,9 +4,13 @@ namespace Utils\Composite;
 
 trait Composite
 {
+    /**
+     * @var array
+     */
     protected $items = [];
 
     /**
+     * Add an item to items and return its index
      * @param mixed $item
      * @return int
      */
@@ -17,6 +21,7 @@ trait Composite
     }
 
     /**
+     * Remove the given item from items and returns its index. Returns false if item not found
      * @param mixed $item
      * @return int|bool
      */
@@ -31,6 +36,7 @@ trait Composite
     }
 
     /**
+     * Get the item on the given index. Returns null if index not found
      * @param int $index
      * @return mixed
      */

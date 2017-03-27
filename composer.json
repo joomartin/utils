@@ -1,16 +1,27 @@
 {
+    "name": "joomartin/utils",
+    "description": "Common PHP utils",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Joo Martin",
+            "email": "joomartin@jmweb.hu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
     "autoload": {
         "psr-4": {
-            "Utils": "src/"
+            "Utils\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spec\\": "spec/"
+            "Utils\\Tests\\": "tests/"
         }
     },
     "require-dev": {
-        "phpspec/phpspec": "^3.2",
         "phpunit/phpunit": "^5.7"
     }
 }
