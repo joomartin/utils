@@ -2,51 +2,24 @@
 
 namespace Joomartin\Utils\Observer;
 
-trait Observable
+interface Observable
 {
-    /**
-     * @var Observer[]
-     */
-    protected $observers = [];
-
     /**
      * Add the given Observer to its observers
      * @param Observer $observer
      */
-    public function attach(Observer $observer)
-    {
-        $this->observers[] = $observer;
-    }
+    public function attach(Observer $observer);
 
     /**
      * Remove the given Observer from its observers
      * @param Observer $observer
      * @return mixed
      */
-    public function detach(Observer $observer)
-    {
-        $index = array_search($observer, $this->observers);
-        if ($index !== false) {
-            unset($this->observers[$index]);
-        }
-
-        return $index;
-    }
-
-    public function notifyObservers($data = null)
-    {
-        $data = ($data) ? $data : $this;
-        foreach ($this->observers as $observer) {
-            $observer->notify($data);
-        }
-    }
+    public function detach(Observer $observer);
 
     /**
-     * Returns all observers
-     * @return Observer[]
+     * Notifies all of its observers with the given data
+     * @param mixed $data
      */
-    public function observers()
-    {
-        return $this->observers;
-    }
+    public function notifyObservers($data = null);
 }
