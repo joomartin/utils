@@ -9,5 +9,5 @@ interface Observer
      * @param $data
      * @return void
      */
-    public function notify($data);
+    public function notify($data = null);
 }
