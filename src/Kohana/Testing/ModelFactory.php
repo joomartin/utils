@@ -53,7 +53,7 @@ class ModelFactory
      */
     public function create($class, $count = 1, array $attributes = [])
     {
-        $models = $this->make($class, $attributes, $count);
+        $models = $this->make($class, $count, $attributes);
 
         if ($count == 1) {
             $models->save();
