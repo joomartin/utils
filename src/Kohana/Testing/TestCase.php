@@ -1,6 +1,6 @@
 <?php
 
-namespace Joomartin\Utils\Kohana\Unittest;
+namespace Joomartin\Utils\Kohana\Testing;
 
 use PHPUnit_Framework_TestCase;
 
