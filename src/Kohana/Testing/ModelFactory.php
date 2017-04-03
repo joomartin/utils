@@ -37,7 +37,7 @@ class ModelFactory
      */
     public function define($class, Closure $closure)
     {
-        $this->factories[$class] = $closure($this->faker);
+        $this->factories[$class] = $closure;
 
         return $this;
     }
@@ -52,7 +52,7 @@ class ModelFactory
      */
     public function create($class, $count = 1)
     {
-        $models = $this->make($class);
+        $models = $this->make($class, $count);
 
         if ($count == 1) {
             $models->save();
@@ -92,7 +92,9 @@ class ModelFactory
     protected function makeModelFrom($class)
     {
         $model = \ORM::factory($this->normalizeModelName($class));
-        foreach ($this->factories[$class] as $key => $value) {
+        $attributes = $this->factories[$class]($this->faker);
+
+        foreach ($attributes as $key => $value) {
             $model->{$key} = $value;
         }
 
