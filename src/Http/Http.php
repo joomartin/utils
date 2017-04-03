@@ -15,7 +15,6 @@ class Http
     protected $data;
 
     /**
-     * Http constructor.
      * @param $url
      * @param array $data
      */
