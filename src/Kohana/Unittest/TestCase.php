@@ -29,7 +29,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
      */
     public function assertDatabaseHas($table, array $attributes)
     {
-        $query = DB::select()->from($table);
+        $query = \DB::select()->from($table);
 
         foreach ($attributes as $key => $value) {
             $query->and_where($key, '=', $value);
