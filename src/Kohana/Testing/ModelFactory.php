@@ -79,15 +79,24 @@ class ModelFactory
         $models = [];
 
         foreach (range(1, $count) as $i) {
-            $model = \ORM::factory($class);
-            foreach ($this->factories[$class] as $key => $value) {
-                $model->{$key} = $value;
-            }
-
-            $models[] = $model;
+            $models[] = $this->makeModelFrom($class);
         }
 
         return ($count == 1) ? $models[0] : $models;
+    }
+
+    /**
+     * @param $class
+     * @return \ORM
+     */
+    protected function makeModelFrom($class)
+    {
+        $model = \ORM::factory($this->normalizeModelName($class));
+        foreach ($this->factories[$class] as $key => $value) {
+            $model->{$key} = $value;
+        }
+
+        return $model;
     }
 
     /**
@@ -99,5 +108,18 @@ class ModelFactory
         if (!isset($this->factories[$class])) {
             throw new \Exception("Factory of {$class} does not exists.");
         }
+    }
+
+    /**
+     * @param $class
+     * @return string
+     */
+    protected function normalizeModelName($class)
+    {
+        if (strpos(strtolower($class), 'model') !== false) {
+            return ucfirst(substr($class, 6));
+        }
+
+        return ucfirst($class);
     }
 }

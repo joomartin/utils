@@ -5,9 +5,9 @@ namespace Joomartin\Utils\Tests\Kohana\Testing;
 use Faker\Factory;
 use Faker\Generator;
 use Joomartin\Utils\Kohana\Testing\ModelFactory;
-use PHPUnit_Framework_TestCase;
+use Joomartin\Utils\Kohana\Testing\TestCase;
 
-class ModelFactoryTest extends PHPUnit_Framework_TestCase
+class ModelFactoryTest extends TestCase
 {
     protected $faker;
 
@@ -48,5 +48,23 @@ class ModelFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->expectException('Exception');
         $factory->create('NonExistingClass');
+    }
+
+    /** @test */
+    public function it_can_normalize_a_given_model_name()
+    {
+        $modelFactory = new ModelFactory;
+
+        $name = $this->invokeMethod($modelFactory, 'normalizeModelName', ['Model_Product']);
+        $this->assertEquals('Product', $name);
+
+        $name = $this->invokeMethod($modelFactory, 'normalizeModelName', ['model_product']);
+        $this->assertEquals('Product', $name);
+
+        $name = $this->invokeMethod($modelFactory, 'normalizeModelName', ['Product']);
+        $this->assertEquals('Product', $name);
+
+        $name = $this->invokeMethod($modelFactory, 'normalizeModelName', ['product']);
+        $this->assertEquals('Product', $name);
     }
 }
