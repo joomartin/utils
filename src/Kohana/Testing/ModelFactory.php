@@ -47,12 +47,13 @@ class ModelFactory
      * If $count given, then it returns $count objects, otherwise it creates a single instance.
      *
      * @param $class
+     * @param array $attributes
      * @param int $count
      * @return \ORM
      */
-    public function create($class, $count = 1)
+    public function create($class, $count = 1, array $attributes = [])
     {
-        $models = $this->make($class, $count);
+        $models = $this->make($class, $attributes, $count);
 
         if ($count == 1) {
             $models->save();
@@ -70,16 +71,17 @@ class ModelFactory
      * If $count given, then it returns $count objects, otherwise it makes a single instance.
      *
      * @param string $class
+     * @param array $attributes
      * @param int $count
      * @return \ORM
      */
-    public function make($class, $count = 1)
+    public function make($class, $count = 1, array $attributes = [])
     {
         $this->guardAgainstNonExistingModel($class);
         $models = [];
 
         foreach (range(1, $count) as $i) {
-            $models[] = $this->makeModelFrom($class);
+            $models[] = $this->makeModelFrom($class, $attributes);
         }
 
         return ($count == 1) ? $models[0] : $models;
@@ -87,14 +89,16 @@ class ModelFactory
 
     /**
      * @param $class
+     * @param array $attributes
      * @return \ORM
      */
-    protected function makeModelFrom($class)
+    protected function makeModelFrom($class, array $attributes = [])
     {
         $model = \ORM::factory($this->normalizeModelName($class));
-        $attributes = $this->factories[$class]($this->faker);
+        $fakerAttributes = $this->factories[$class]($this->faker);
+        $mergedAttributes = array_merge($fakerAttributes, $attributes);
 
-        foreach ($attributes as $key => $value) {
+        foreach ($mergedAttributes as $key => $value) {
             $model->{$key} = $value;
         }
 
