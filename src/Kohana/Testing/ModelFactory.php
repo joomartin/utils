@@ -8,6 +8,11 @@ use Faker\Factory;
 class ModelFactory
 {
     /**
+     * @var ModelFactory
+     */
+    private static $instance = null;
+
+    /**
      * @var [][]
      */
     protected $factories = [];
@@ -17,9 +22,21 @@ class ModelFactory
      */
     protected $faker = null;
 
-    public function __construct()
+    private function __construct()
     {
         $this->faker = Factory::create();
+    }
+
+    /**
+     * @return ModelFactory
+     */
+    public static function instance()
+    {
+        if ( ! static::$instance) {
+            static::$instance = new ModelFactory;
+        }
+
+        return static::$instance;
     }
 
     /**
@@ -111,7 +128,7 @@ class ModelFactory
      */
     protected function guardAgainstNonExistingModel($class)
     {
-        if (!isset($this->factories[$class])) {
+        if ( ! isset($this->factories[$class])) {
             throw new \Exception("Factory of {$class} does not exists.");
         }
     }
@@ -122,10 +139,28 @@ class ModelFactory
      */
     protected function normalizeModelName($class)
     {
-        if (strpos(strtolower($class), 'model') !== false) {
-            return ucfirst(substr($class, 6));
+        if ($this->startWithModelPrefix($class)) {
+            $class = $this->modelNameWithoutPrefix($class);
         }
 
         return ucfirst($class);
+    }
+
+    /**
+     * @param $class
+     * @return bool
+     */
+    protected function startWithModelPrefix($class)
+    {
+        return strpos(strtolower($class), 'model') !== false;
+    }
+
+    /**
+     * @param $class
+     * @return bool|string
+     */
+    protected function modelNameWithoutPrefix($class)
+    {
+        return substr($class, 6);
     }
 }
