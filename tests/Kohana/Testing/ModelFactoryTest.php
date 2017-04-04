@@ -19,7 +19,7 @@ class ModelFactoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->faker = Factory::create();
+        $this->faker = Factory::create('hu_Hu');
         $this->factory = ModelFactory::instance();
     }
 
