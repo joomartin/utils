@@ -22,7 +22,7 @@ trait DatabaseTransactions
      */
     public function beginTransaction()
     {
-        Model_Database::trans_start();
+        \Model_Database::trans_start();
     }
 
     /**
@@ -31,6 +31,6 @@ trait DatabaseTransactions
      */
     public function endTransaction()
     {
-        Model_Database::trans_end([false]);
+        \Model_Database::trans_end([false]);
     }
 }

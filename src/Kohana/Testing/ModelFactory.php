@@ -24,7 +24,7 @@ class ModelFactory
 
     private function __construct()
     {
-        $this->faker = Factory::create(hu_HU);
+        $this->faker = Factory::create('hu_HU');
     }
 
     /**
