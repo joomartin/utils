@@ -6,13 +6,11 @@ trait DatabaseTransactions
 {
     public function setUp()
     {
-        parent::setUp();
         $this->beginTransaction();
     }
 
     public function tearDown()
     {
-        parent::setUp();
         $this->endTransaction();
     }
 
@@ -20,7 +18,7 @@ trait DatabaseTransactions
      * Begins the transaction
      * @return void
      */
-    public function beginTransaction()
+    protected function beginTransaction()
     {
         \Model_Database::trans_start();
     }
@@ -29,7 +27,7 @@ trait DatabaseTransactions
      * Ends the transaction
      * @return void
      */
-    public function endTransaction()
+    protected function endTransaction()
     {
         \Model_Database::trans_end([false]);
     }
