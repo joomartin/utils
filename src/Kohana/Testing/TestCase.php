@@ -99,4 +99,14 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     {
         $this->assertRegexp('/' . $needle . '/', $haystack);
     }
+
+    /**
+     * Alias for assertStringContains
+     * @param $needle
+     * @param $haystack
+     */
+    public function assertSee($needle, $haystack)
+    {
+        $this->assertStringContains($needle, $haystack);
+    }
 }
