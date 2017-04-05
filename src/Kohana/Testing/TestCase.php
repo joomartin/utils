@@ -56,7 +56,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         $query = \DB::select()->from($table);
 
         foreach ($attributes as $key => $value) {
-            $query->and_where($key, '=', $value);
+            $operator = (is_array($value)) ? 'IN' : '=';
+            $query->and_where($key, $operator, $value);
         }
 
         $result = $query->execute()->as_array();
