@@ -99,7 +99,7 @@ class Assert
      * @param mixed $var
      * @return string
      */
-    protected function getTypeOf($var)
+    protected static function getTypeOf($var)
     {
         return (is_object($var)) ? get_class($var) : gettype($var);
     }
