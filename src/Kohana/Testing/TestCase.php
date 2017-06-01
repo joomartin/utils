@@ -29,7 +29,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     public function assertDatabaseHas($table, array $attributes)
     {
         $this->assertTrue(
-            $this->getCountOf($table, $attributes) !== 0
+            $this->getCountOf($table, $attributes) !== 0,
+            'Failed asserting that database has ' . json_encode($attributes)
         );
     }
 
@@ -40,7 +41,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     public function assertDatabaseMissing($table, array $attributes)
     {
         $this->assertTrue(
-            $this->getCountOf($table, $attributes) === 0
+            $this->getCountOf($table, $attributes) === 0,
+            'Failed asserting that database missing ' . json_encode($attributes)
         );
     }
 
@@ -54,7 +56,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         $query = \DB::select()->from($table);
 
         foreach ($attributes as $key => $value) {
-            $query->and_where($key, '=', $value);
+            $operator = (is_array($value)) ? 'IN' : '=';
+            $query->and_where($key, $operator, $value);
         }
 
         $result = $query->execute()->as_array();
@@ -98,5 +101,15 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     public function assertStringContains($needle, $haystack)
     {
         $this->assertRegexp('/' . $needle . '/', $haystack);
+    }
+
+    /**
+     * Alias for assertStringContains
+     * @param $needle
+     * @param $haystack
+     */
+    public function assertSee($needle, $haystack)
+    {
+        $this->assertStringContains($needle, $haystack);
     }
 }
